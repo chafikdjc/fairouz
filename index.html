@@ -1,555 +1,497 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAIROUZ TRAVEL | Agence de Voyage Catégorie A - Kasserine, Tunisie</title>
-    <meta name="description" content="Fayrouz Travel - Agence de voyage et de tourisme de Catégorie A à Kasserine, Tunisie. Incoming, Outgoing, Billetterie Aérienne, Omra, Voyages organisés.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="icon" type="image/png" href="Logo.png">
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAIROUZ TRAVEL — Agence de Voyages Catégorie A, Kasserine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night:#0F2340;
+    --night-2:#132C52;
+    --sand:#C88A3D;
+    --sand-light:#E3B266;
+    --sea:#1C6E8C;
+    --clay:#A8462F;
+    --paper:#F7F4EC;
+    --paper-2:#EFE9DB;
+    --ink:#181818;
+    --ink-soft:#4A4A46;
+    --line:rgba(15,35,64,0.12);
+    --radius:2px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Instrument Serif', serif;
+    font-weight:400;
+    letter-spacing:-0.01em;
+  }
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  a{color:inherit;text-decoration:none;}
+  img,svg{display:block;max-width:100%;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+  @media(max-width:640px){.wrap{padding:0 20px;}}
+
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease, transform .8s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  header.nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(247,244,236,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+    transition:background .3s ease, box-shadow .3s ease;
+  }
+  .nav-inner{max-width:1180px;margin:0 auto;padding:18px 32px;display:flex;align-items:center;justify-content:space-between;}
+  @media(max-width:640px){.nav-inner{padding:14px 20px;}}
+  .brand{display:flex;align-items:center;gap:10px;}
+  .brand-mark{width:34px;height:34px;flex-shrink:0;}
+  .brand-text{font-family:'IBM Plex Mono';font-weight:600;font-size:15px;letter-spacing:0.08em;color:var(--night);}
+  .brand-text span{color:var(--sand);}
+  nav.links{display:flex;gap:34px;font-size:14px;letter-spacing:0.02em;color:var(--night);}
+  @media(max-width:960px){nav.links{display:none;}}
+  .nav-cta{display:flex;align-items:center;gap:14px;}
+  .btn-call{font-family:'IBM Plex Mono';font-size:13px;color:var(--night);border:1px solid var(--night);padding:9px 16px;border-radius:var(--radius);white-space:nowrap;}
+  @media(max-width:560px){.btn-call{display:none;}}
+  .btn-solid{font-family:'IBM Plex Mono';font-size:13px;background:var(--sand);color:var(--night);padding:10px 18px;border-radius:var(--radius);white-space:nowrap;}
+
+  .hero{position:relative;color:var(--paper);padding:170px 0 100px;overflow:hidden;min-height:92vh;display:flex;align-items:flex-end;}
+  .hero-bg{
+    position:absolute;inset:0;z-index:0;
+    background-image:
+      linear-gradient(180deg, rgba(10,22,42,0.55) 0%, rgba(10,22,42,0.68) 45%, rgba(10,22,42,0.92) 100%),
+      url('https://images.unsplash.com/photo-1750859876327-f9360664c362?auto=format&fit=crop&w=2400&q=80');
+    background-size:cover;background-position:center 65%;
+    filter:saturate(0.9) contrast(1.05);
+  }
+  .hero-routes{position:absolute;inset:0;opacity:0.6;pointer-events:none;z-index:1;}
+  .hero-inner{position:relative;z-index:2;width:100%;}
+  .eyebrow{font-family:'IBM Plex Mono';font-size:12.5px;letter-spacing:0.18em;text-transform:uppercase;color:var(--sand-light);margin-bottom:26px;display:flex;align-items:center;gap:10px;}
+  .eyebrow::before{content:"";width:26px;height:1px;background:var(--sand-light);display:inline-block;}
+  .hero h1{font-size:clamp(38px,6vw,78px);line-height:1.03;max-width:15ch;color:var(--paper);text-shadow:0 2px 30px rgba(0,0,0,0.25);}
+  .hero h1 em{font-style:italic;color:var(--sand-light);}
+  .hero-sub{max-width:520px;margin-top:26px;font-size:17px;color:rgba(247,244,236,0.85);}
+  .hero-actions{display:flex;gap:16px;margin-top:40px;flex-wrap:wrap;}
+  .btn-primary{background:var(--sand);color:var(--night);font-family:'IBM Plex Mono';font-size:14px;padding:15px 26px;border-radius:var(--radius);letter-spacing:0.02em;display:inline-flex;align-items:center;gap:10px;}
+  .btn-ghost{border:1px solid rgba(247,244,236,0.4);color:var(--paper);font-family:'IBM Plex Mono';font-size:14px;padding:15px 26px;border-radius:var(--radius);}
+  .hero-strip{margin-top:80px;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(247,244,236,0.22);padding-top:24px;gap:20px;}
+  @media(max-width:820px){.hero-strip{grid-template-columns:repeat(2,1fr);}}
+  .hero-strip div{font-family:'IBM Plex Mono';font-size:11.5px;letter-spacing:0.06em;color:rgba(247,244,236,0.65);}
+  .hero-strip strong{display:block;color:var(--paper);font-size:13px;margin-bottom:4px;letter-spacing:0.02em;}
+
+  .marquee-wrap{background:var(--paper-2);border-bottom:1px solid var(--line);border-top:1px solid var(--line);padding:20px 0;overflow:hidden;}
+  .marquee{display:flex;gap:64px;white-space:nowrap;animation:scroll 28s linear infinite;width:max-content;}
+  .marquee span{font-family:'IBM Plex Mono';font-size:13px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);display:flex;align-items:center;gap:10px;}
+  .marquee span::before{content:"✦";color:var(--sand);font-size:11px;}
+  @keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  section{padding:110px 0;}
+  @media(max-width:640px){section{padding:72px 0;}}
+  .section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:64px;flex-wrap:wrap;}
+  .section-tag{font-family:'IBM Plex Mono';font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:var(--sea);margin-bottom:14px;}
+  .section-head h2{font-size:clamp(30px,4vw,46px);max-width:16ch;}
+  .section-note{max-width:340px;font-size:14.5px;color:var(--ink-soft);}
+
+  .stats{background:var(--night);color:var(--paper);}
+  .stats-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid rgba(247,244,236,0.15);}
+  @media(max-width:900px){.stats-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.stats-grid{grid-template-columns:1fr;}}
+  .stat{padding:40px 32px;border-right:1px solid rgba(247,244,236,0.15);border-bottom:1px solid rgba(247,244,236,0.15);}
+  .stat-num{font-family:'IBM Plex Mono';font-weight:600;font-size:clamp(34px,4vw,52px);color:var(--sand-light);letter-spacing:-0.01em;}
+  .stat-label{margin-top:10px;font-size:13.5px;color:rgba(247,244,236,0.7);max-width:22ch;}
+
+  .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  @media(max-width:900px){.services-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:600px){.services-grid{grid-template-columns:1fr;}}
+  .service{background:var(--paper);padding:38px 30px;transition:background .3s ease;}
+  .service:hover{background:var(--paper-2);}
+  .service-icon{width:36px;height:36px;margin-bottom:26px;}
+  .service h3{font-size:23px;margin-bottom:12px;}
+  .service p{font-size:14.5px;color:var(--ink-soft);}
+  .service .tag{display:inline-block;margin-top:18px;font-family:'IBM Plex Mono';font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--sea);}
+
+  .photo-break{position:relative;height:56vh;min-height:400px;overflow:hidden;}
+  .photo-break img{width:100%;height:100%;object-fit:cover;filter:saturate(0.92) contrast(1.05);}
+  .photo-break .overlay{position:absolute;inset:0;background:linear-gradient(90deg, rgba(15,35,64,0.82) 0%, rgba(15,35,64,0.25) 55%, rgba(15,35,64,0.05) 100%);display:flex;align-items:center;}
+  .photo-break .cap{color:var(--paper);max-width:520px;padding:0 8%;}
+  .photo-break .cap .section-tag{color:var(--sand-light);}
+  .photo-break .cap h3{font-size:clamp(26px,3.4vw,40px);margin-bottom:12px;}
+  .photo-break .cap p{font-size:15px;color:rgba(247,244,236,0.82);max-width:40ch;}
+
+  .why{background:var(--paper-2);}
+  .why-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:70px;align-items:start;}
+  @media(max-width:900px){.why-grid{grid-template-columns:1fr;gap:40px;}}
+  .why-list{border-top:1px solid var(--line);}
+  .why-item{display:grid;grid-template-columns:60px 1fr;gap:18px;padding:26px 0;border-bottom:1px solid var(--line);}
+  .why-item .num{font-family:'IBM Plex Mono';font-size:12px;color:var(--sand);padding-top:4px;}
+  .why-item h4{font-size:19px;font-family:'IBM Plex Sans';font-weight:600;margin-bottom:6px;}
+  .why-item p{font-size:14px;color:var(--ink-soft);}
+  .badge-panel{background:var(--night);color:var(--paper);padding:38px;border-radius:var(--radius);}
+  .badge-panel h3{font-size:24px;margin-bottom:22px;color:var(--sand-light);}
+  .badge-row{display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(247,244,236,0.15);font-size:13.5px;}
+  .badge-row span:first-child{color:rgba(247,244,236,0.6);}
+  .badge-row span:last-child{font-family:'IBM Plex Mono';font-size:12.5px;text-align:right;}
+
+  .dest-scroll{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  @media(max-width:900px){.dest-scroll{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.dest-scroll{grid-template-columns:1fr;}}
+  .dest{position:relative;aspect-ratio:3/4;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:22px;}
+  .dest img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(0.85) contrast(1.05);transition:transform .6s ease;}
+  .dest:hover img{transform:scale(1.06);}
+  .dest .overlay{position:absolute;inset:0;background:linear-gradient(180deg, rgba(15,35,64,0.05) 0%, rgba(15,35,64,0.85) 100%);}
+  .dest .content{position:relative;z-index:2;color:var(--paper);}
+  .dest .kicker{font-family:'IBM Plex Mono';font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;opacity:0.9;color:var(--sand-light);}
+  .dest h4{font-size:24px;margin-top:6px;}
+
+  .fiche{background:var(--paper);}
+  .fiche-grid{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line);}
+  @media(max-width:760px){.fiche-grid{grid-template-columns:1fr;}}
+  .fiche-row{padding:24px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:130px 1fr;gap:18px;}
+  .fiche-grid > div:nth-child(odd) .fiche-row{padding-right:36px;}
+  .fiche-grid > div:nth-child(even) .fiche-row{padding-left:36px;}
+  @media(max-width:760px){.fiche-grid > div .fiche-row{padding-left:0!important;padding-right:0!important;}}
+  .fiche-row .k{font-family:'IBM Plex Mono';font-size:11.5px;letter-spacing:0.06em;text-transform:uppercase;color:var(--sea);padding-top:2px;}
+  .fiche-row .v{font-size:14.5px;color:var(--ink);}
+
+  .cta{position:relative;color:var(--paper);overflow:hidden;}
+  .cta-bg{
+    position:absolute;inset:0;z-index:0;
+    background-image:
+      linear-gradient(100deg, rgba(10,22,42,0.94) 20%, rgba(10,22,42,0.55) 75%),
+      url('https://images.unsplash.com/photo-1751877234095-1d4bf98d5c8a?auto=format&fit=crop&w=2200&q=80');
+    background-size:cover;background-position:center;
+    filter:saturate(0.9);
+  }
+  .cta-inner{position:relative;z-index:2;display:grid;grid-template-columns:1.2fr 1fr;gap:70px;}
+  @media(max-width:900px){.cta-inner{grid-template-columns:1fr;gap:48px;}}
+  .cta h2{font-size:clamp(32px,4.5vw,54px);max-width:14ch;}
+  .cta-sub{margin-top:22px;color:rgba(247,244,236,0.78);max-width:420px;font-size:15.5px;}
+  .contact-list{margin-top:0;}
+  .contact-row{display:flex;justify-content:space-between;align-items:center;padding:20px 0;border-bottom:1px solid rgba(247,244,236,0.2);}
+  .contact-row .k{font-family:'IBM Plex Mono';font-size:12px;color:rgba(247,244,236,0.55);letter-spacing:0.06em;text-transform:uppercase;}
+  .contact-row .v{font-size:15px;text-align:right;}
+  .contact-row .v a{border-bottom:1px solid rgba(247,244,236,0.4);}
+
+  footer{background:var(--night);border-top:1px solid rgba(247,244,236,0.15);padding:34px 0;}
+  .footer-inner{display:flex;justify-content:space-between;align-items:center;color:rgba(247,244,236,0.55);font-family:'IBM Plex Mono';font-size:12px;flex-wrap:wrap;gap:14px;}
+  .footer-inner a{color:rgba(247,244,236,0.75);}
+
+  .wa-float{position:fixed;bottom:26px;right:26px;z-index:90;background:var(--sand);color:var(--night);width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(15,35,64,0.35);}
+  .wa-float svg{width:26px;height:26px;}
+</style>
 </head>
 <body>
 
-    <!-- Preloader -->
-    <div id="preloader">
-        <div class="loader">
-            <img src="Logo.png" alt="Fayrouz Travel" class="loader-logo">
-            <div class="loader-icon">
-                <i class="fas fa-plane"></i>
-            </div>
-            <p>FAIROUZ TRAVEL</p>
-        </div>
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 40 40" fill="none">
+        <circle cx="20" cy="20" r="19" stroke="#0F2340" stroke-width="1.2"/>
+        <path d="M20 6 C20 6 12 16 12 23 C12 27.5 15.5 31 20 31 C24.5 31 28 27.5 28 23 C28 16 20 6 20 6 Z" fill="#C88A3D"/>
+        <path d="M9 24 Q20 14 31 24" stroke="#1C6E8C" stroke-width="1.4" fill="none"/>
+      </svg>
+      <div class="brand-text">FAIROUZ <span>TRAVEL</span></div>
     </div>
-
-    <!-- Navigation -->
-    <nav id="navbar" class="navbar">
-        <div class="container nav-container">
-            <a href="#home" class="nav-logo">
-                <img src="Logo.png" alt="Fayrouz Travel Logo" class="logo-img">
-                <span class="logo-text">FAIROUZ</span>
-                <span class="logo-sub">TRAVEL</span>
-            </a>
-            <button class="nav-toggle" id="navToggle" aria-label="Menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="#home" class="nav-link active">Accueil</a></li>
-                <li><a href="#about" class="nav-link">À Propos</a></li>
-                <li><a href="#services" class="nav-link">Services</a></li>
-                <li><a href="#stats" class="nav-link">Chiffres</a></li>
-                <li><a href="#why" class="nav-link">Pourquoi Nous</a></li>
-                <li><a href="#contact" class="nav-link nav-cta">Contact</a></li>
-            </ul>
-        </div>
+    <nav class="links">
+      <a href="#services">Services</a>
+      <a href="#chiffres">Résultats</a>
+      <a href="#destinations">Destinations</a>
+      <a href="#fiche">Agence</a>
+      <a href="#contact">Contact</a>
     </nav>
+    <div class="nav-cta">
+      <a class="btn-call" href="tel:+21657022366">+216 57 022 366</a>
+      <a class="btn-solid" href="#contact">Réserver</a>
+    </div>
+  </div>
+</header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-bg-image" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=80')"></div>
-        <div class="hero-overlay"></div>
-        <div class="hero-particles" id="particles"></div>
-        <div class="container hero-content">
-            <div class="hero-logo-wrapper">
-                <img src="Logo.png" alt="Fayrouz Travel" class="hero-logo">
-            </div>
-            <div class="hero-badge">
-                <i class="fas fa-award"></i>
-                Agence de Voyage Catégorie A - Agréée ONTT
-            </div>
-            <h1 class="hero-title">
-                <span class="hero-title-line">Explorez le Monde</span>
-                <span class="hero-title-line accent">avec <span class="highlight">Fayrouz Travel</span></span>
-            </h1>
-            <p class="hero-subtitle">Votre agence de voyage de catégorie A à Kasserine, Tunisie. Incoming, Outgoing, Billetterie Aérienne et Pèlerinage Omra. Producteur & Distributeur de services touristiques de premier plan.</p>
-            <div class="hero-actions">
-                <a href="#services" class="btn btn-primary">
-                    <i class="fas fa-compass"></i>
-                    Découvrir nos Services
-                </a>
-                <a href="#contact" class="btn btn-outline">
-                    <i class="fas fa-phone"></i>
-                    Nous Contacter
-                </a>
-            </div>
-            <div class="hero-stats-bar">
-                <div class="hero-stat">
-                    <span class="hero-stat-number" data-target="1000">0</span><span class="hero-stat-plus">+</span>
-                    <span class="hero-stat-label">Pèlerins Omra</span>
-                </div>
-                <div class="hero-stat-divider"></div>
-                <div class="hero-stat">
-                    <span class="hero-stat-number" data-target="1500">0</span><span class="hero-stat-plus">+</span>
-                    <span class="hero-stat-label">Billets d'Avion</span>
-                </div>
-                <div class="hero-stat-divider"></div>
-                <div class="hero-stat">
-                    <span class="hero-stat-number" data-target="500">0</span><span class="hero-stat-plus">+</span>
-                    <span class="hero-stat-label">Réservations Hôtels</span>
-                </div>
-            </div>
+<section class="hero">
+  <div class="hero-bg"></div>
+  <svg class="hero-routes" viewBox="0 0 1180 720" preserveAspectRatio="xMidYMid slice">
+    <g stroke="#E3B266" stroke-width="1" fill="none" opacity="0.55">
+      <path d="M180 420 Q 420 260 700 200" stroke-dasharray="2 6"/>
+      <path d="M180 420 Q 350 520 620 560" stroke-dasharray="2 6"/>
+      <path d="M180 420 Q 500 380 940 160" stroke-dasharray="2 6"/>
+      <path d="M180 420 Q 260 200 460 60" stroke-dasharray="2 6"/>
+    </g>
+    <circle cx="180" cy="420" r="5" fill="#E3B266"/>
+    <circle cx="700" cy="200" r="3" fill="#F7F4EC" opacity="0.8"/>
+    <circle cx="620" cy="560" r="3" fill="#F7F4EC" opacity="0.8"/>
+    <circle cx="940" cy="160" r="3" fill="#F7F4EC" opacity="0.8"/>
+    <circle cx="460" cy="60" r="3" fill="#F7F4EC" opacity="0.8"/>
+    <text x="192" y="410" fill="#F7F4EC" font-family="IBM Plex Mono" font-size="11" opacity="0.9">KASSERINE</text>
+    <text x="712" y="196" fill="#F7F4EC" font-family="IBM Plex Mono" font-size="10" opacity="0.6">ISTANBUL</text>
+    <text x="632" y="578" fill="#F7F4EC" font-family="IBM Plex Mono" font-size="10" opacity="0.6">LE CAIRE</text>
+    <text x="952" y="156" fill="#F7F4EC" font-family="IBM Plex Mono" font-size="10" opacity="0.6">LA MECQUE</text>
+    <text x="472" y="56" fill="#F7F4EC" font-family="IBM Plex Mono" font-size="10" opacity="0.6">EUROPE</text>
+  </svg>
+  <div class="wrap hero-inner">
+    <div class="eyebrow reveal">Agence de Voyages — Catégorie A · Kasserine, Tunisie</div>
+    <h1 class="reveal">Chaque route <em>part d'ici</em> — et va partout.</h1>
+    <p class="hero-sub reveal">Fairouz Travel conçoit, réserve et accompagne vos voyages — Omra, séjours à l'étranger, tourisme réceptif et déplacements d'affaires — avec le statut, les garanties et la flotte d'une agence de Catégorie A.</p>
+    <div class="hero-actions reveal">
+      <a class="btn-primary" href="#contact">Parler à un conseiller →</a>
+      <a class="btn-ghost" href="#services">Voir nos services</a>
+    </div>
+    <div class="hero-strip reveal">
+      <div><strong>1000+</strong>pèlerins Omra accompagnés</div>
+      <div><strong>1500+</strong>billets d'avion émis</div>
+      <div><strong>500+</strong>réservations d'hôtels</div>
+      <div><strong>Cat. A</strong>licence ONTT / IATA / FTAV</div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee">
+    <span>ONTT — Catégorie A</span>
+    <span>Membre FTAV</span>
+    <span>Accréditation IATA</span>
+    <span>Turquie · Égypte · Arabie Saoudite · Europe</span>
+    <span>Flotte de transport privée</span>
+    <span>Assurance RC Professionnelle</span>
+    <span>Kasserine, Tunisie</span>
+    <span>ONTT — Catégorie A</span>
+    <span>Membre FTAV</span>
+    <span>Accréditation IATA</span>
+    <span>Turquie · Égypte · Arabie Saoudite · Europe</span>
+    <span>Flotte de transport privée</span>
+    <span>Assurance RC Professionnelle</span>
+    <span>Kasserine, Tunisie</span>
+  </div>
+</div>
+
+<section class="stats" id="chiffres">
+  <div class="wrap">
+    <div class="section-head" style="border:none;margin-bottom:50px;">
+      <div>
+        <div class="section-tag" style="color:var(--sand-light);">Saison 2025 / 2026</div>
+        <h2 style="color:var(--paper);">Une saison mesurée en voyages réels, pas en promesses.</h2>
+      </div>
+      <p class="section-note" style="color:rgba(247,244,236,0.6);">Chaque chiffre correspond à un dossier suivi de bout en bout par notre équipe — du visa au retour.</p>
+    </div>
+    <div class="stats-grid reveal">
+      <div class="stat"><div class="stat-num">1000+</div><div class="stat-label">Pèlerins de Omra accompagnés</div></div>
+      <div class="stat"><div class="stat-num">1500+</div><div class="stat-label">Réservations de billets d'avion</div></div>
+      <div class="stat"><div class="stat-num">500</div><div class="stat-label">Réservations d'hôtels, en Tunisie et à l'étranger</div></div>
+      <div class="stat"><div class="stat-num">03</div><div class="stat-label">Voyages organisés vers la Turquie</div></div>
+      <div class="stat"><div class="stat-num">02</div><div class="stat-label">Voyages organisés vers l'Égypte</div></div>
+      <div class="stat"><div class="stat-num">30</div><div class="stat-label">Réservations de bateau</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-tag">Nos domaines d'expertise</div>
+        <h2>Une licence, cinq métiers du voyage.</h2>
+      </div>
+      <p class="section-note">Le statut de Catégorie A nous permet d'opérer sur toute la chaîne de valeur — producteur et distributeur, en Tunisie comme à l'étranger.</p>
+    </div>
+    <div class="services-grid reveal">
+      <div class="service">
+        <svg class="service-icon" viewBox="0 0 36 36" fill="none"><path d="M6 30 Q18 6 30 30" stroke="#C88A3D" stroke-width="1.4"/><circle cx="18" cy="16" r="3" stroke="#0F2340" stroke-width="1.2"/></svg>
+        <h3>Incoming — Tunisie</h3>
+        <p>Circuits culturels, désert, séjours balnéaires et thalassothérapie pour les voyageurs internationaux, avec guides certifiés et transferts en flotte propre.</p>
+        <span class="tag">Réceptif</span>
+      </div>
+      <div class="service">
+        <svg class="service-icon" viewBox="0 0 36 36" fill="none"><path d="M4 18h28M22 8l10 10-10 10" stroke="#1C6E8C" stroke-width="1.4" fill="none"/></svg>
+        <h3>Outgoing & Billetterie</h3>
+        <p>Voyages sur mesure à l'international, packs vacances et émission instantanée de billets aériens et maritimes, toutes compagnies.</p>
+        <span class="tag">Émetteur</span>
+      </div>
+      <div class="service">
+        <svg class="service-icon" viewBox="0 0 36 36" fill="none"><path d="M18 4l4 10h10l-8 7 3 11-9-6-9 6 3-11-8-7h10z" stroke="#A8462F" stroke-width="1.1" fill="none"/></svg>
+        <h3>Omra & Hadj</h3>
+        <p>Organisation complète des séjours de pèlerinage : vols, hébergements à proximité des lieux saints et encadrement dédié.</p>
+        <span class="tag">Tourisme religieux</span>
+      </div>
+      <div class="service">
+        <svg class="service-icon" viewBox="0 0 36 36" fill="none"><rect x="6" y="10" width="24" height="16" rx="1" stroke="#0F2340" stroke-width="1.2"/><path d="M6 16h24" stroke="#0F2340" stroke-width="1.2"/></svg>
+        <h3>Voyages d'Affaires & MICE</h3>
+        <p>Séminaires, congrès et team building en Tunisie, ainsi que gestion des déplacements professionnels avec facturation centralisée.</p>
+        <span class="tag">Corporate</span>
+      </div>
+      <div class="service">
+        <svg class="service-icon" viewBox="0 0 36 36" fill="none"><path d="M6 26h24M10 26V14l8-6 8 6v12" stroke="#C88A3D" stroke-width="1.3" fill="none"/></svg>
+        <h3>Tourisme Local Premium</h3>
+        <p>Éco-lodges, circuits culturels privés et campements sahariens pour redécouvrir la Tunisie autrement.</p>
+        <span class="tag">Niche</span>
+      </div>
+      <div class="service">
+        <svg class="service-icon" viewBox="0 0 36 36" fill="none"><circle cx="12" cy="12" r="4" stroke="#1C6E8C" stroke-width="1.2"/><circle cx="24" cy="24" r="4" stroke="#1C6E8C" stroke-width="1.2"/><path d="M15 15l6 6" stroke="#1C6E8C" stroke-width="1.2"/></svg>
+        <h3>Réseau B2B</h3>
+        <p>Packages en marque blanche destinés aux agences de Catégorie B et aux plateformes indépendantes.</p>
+        <span class="tag">Sous-agences</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="photo-break">
+  <img src="https://images.unsplash.com/photo-1574538202212-8788e515a078?auto=format&fit=crop&w=2000&q=80" alt="Bus de transport touristique Fairouz Travel">
+  <div class="overlay">
+    <div class="cap reveal" style="padding-left:8%;">
+      <div class="section-tag">Logistique</div>
+      <h3>Notre propre bus de transport touristique.</h3>
+      <p>Une flotte privée pour maîtriser chaque transfert, du départ de Kasserine jusqu'à l'aéroport ou le site visité.</p>
+    </div>
+  </div>
+</div>
+
+<section class="why">
+  <div class="wrap why-grid">
+    <div>
+      <div class="section-tag reveal">Pourquoi Fairouz Travel</div>
+      <h2 class="reveal" style="font-size:clamp(28px,3.6vw,40px);max-width:15ch;margin-bottom:10px;">La confiance d'une licence, pas d'une promesse marketing.</h2>
+      <div class="why-list reveal">
+        <div class="why-item">
+          <div class="num">01</div>
+          <div><h4>Sécurité juridique et financière</h4><p>Cautionnement bancaire et assurance responsabilité civile professionnelle, conformes à la réglementation de l'ONTT.</p></div>
         </div>
-        <div class="hero-scroll">
-            <a href="#about">
-                <div class="mouse">
-                    <div class="mouse-wheel"></div>
-                </div>
-            </a>
+        <div class="why-item">
+          <div class="num">02</div>
+          <div><h4>Disponibilité 24/7</h4><p>Une assistance permanente pour nos voyageurs, en Tunisie comme à l'autre bout du monde.</p></div>
         </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="section about">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Qui Sommes-Nous</span>
-                <h2 class="section-title">FAIROUZ TRAVEL</h2>
-                <div class="section-line"></div>
-            </div>
-            <div class="about-grid">
-                <div class="about-content">
-                    <div class="about-image-wrapper">
-                        <img src="https://images.unsplash.com/photo-1539635278303-d4002c07eae3?w=800&q=80" alt="Voyage Tunisie" class="about-image">
-                    </div>
-                    <div class="about-text-box">
-                        <h3>Une Agence de Voyage d'Excellence</h3>
-                        <p>Fondée en 2022, <strong>Fayrouz Travel</strong> est une agence de voyages de <strong>Catégorie A</strong>, agréée par le Ministère du Tourisme Tunisien et l'ONTT (Office National du Tourisme Tunisien).</p>
-                        <p>Basés au cœur de <strong>Kasserine, Tunisie</strong>, nous concevons des expériences de voyage sur mesure, alliant l'authenticité de notre patrimoine tunisien à une ouverture totale sur le monde. Notre licence de Catégorie A nous confère une expertise globale : de la billetterie aérienne internationale à la gestion de grands événements (MICE), en passant par l'accueil de touristes étrangers (Incoming) et les séjours à l'étranger (Outgoing).</p>
-                        <div class="about-motto">
-                            <i class="fas fa-quote-left"></i>
-                            <p>Transformer chaque voyage en une histoire unique, portée par une exigence de confort, de sécurité et d'immersion culturelle.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-cards">
-                    <div class="about-card" data-aos="fade-up">
-                        <div class="about-card-icon">
-                            <i class="fas fa-eye"></i>
-                        </div>
-                        <h4>Notre Vision</h4>
-                        <p>Devenir la référence de l'ingénierie de voyage en Tunisie en digitalisant nos services tout en préservant une approche humaine et ultra-personnalisée.</p>
-                    </div>
-                    <div class="about-card" data-aos="fade-up" data-aos-delay="100">
-                        <div class="about-card-icon">
-                            <i class="fas fa-bullseye"></i>
-                        </div>
-                        <h4>Notre Mission</h4>
-                        <p>Offrir des solutions de voyage clé en main de haute qualité pour les particuliers et les entreprises, tout en promouvant un tourisme durable pour la Tunisie.</p>
-                    </div>
-                    <div class="about-card" data-aos="fade-up" data-aos-delay="200">
-                        <div class="about-card-icon">
-                            <i class="fas fa-handshake"></i>
-                        </div>
-                        <h4>Nos Valeurs</h4>
-                        <p>Excellence opérationnelle, Transparence, Flexibilité et Passion du service.</p>
-                    </div>
-                </div>
-            </div>
+        <div class="why-item">
+          <div class="num">03</div>
+          <div><h4>Flotte de transport privée</h4><p>Notre propre bus de transport touristique, pour une logistique maîtrisée de bout en bout.</p></div>
         </div>
-    </section>
-
-    <!-- Category A Section -->
-    <section class="section category-a">
-        <div class="container">
-            <div class="category-a-grid">
-                <div class="category-a-content">
-                    <span class="section-tag">Statut Officiel</span>
-                    <h2 class="section-title">Pourquoi une Agence Catégorie A ?</h2>
-                    <div class="section-line"></div>
-                    <p class="category-a-intro">En Tunisie, les agences de voyages sont classées par catégories réglementées. La <strong>Catégorie A</strong> représente le niveau d'agrément le plus élevé délivré par le Ministère du Tourisme et l'ONTT.</p>
-                    
-                    <div class="category-a-features">
-                        <div class="cat-feature">
-                            <div class="cat-feature-icon"><i class="fas fa-shield-halved"></i></div>
-                            <div class="cat-feature-text">
-                                <h5>Sécurité Juridique & Financière</h5>
-                                <p>Cautionnement bancaire et assurances obligatoires garantissent la protection totale de vos réservations.</p>
-                            </div>
-                        </div>
-                        <div class="cat-feature">
-                            <div class="cat-feature-icon"><i class="fas fa-globe"></i></div>
-                            <div class="cat-feature-text">
-                                <h5>Offre de Services Totale</h5>
-                                <p>Droit légal d'exercer toutes les activités touristiques : Incoming, Outgoing, Billetterie, Pèlerinage et MICE.</p>
-                            </div>
-                        </div>
-                        <div class="cat-feature">
-                            <div class="cat-feature-icon"><i class="fas fa-graduation-cap"></i></div>
-                            <div class="cat-feature-text">
-                                <h5>Personnel Qualifié</h5>
-                                <p>Directeur d'agence possédant un diplôme supérieur en tourisme et une expérience validée par l'administration.</p>
-                            </div>
-                        </div>
-                        <div class="cat-feature">
-                            <div class="cat-feature-icon"><i class="fas fa-handshake-angle"></i></div>
-                            <div class="cat-feature-text">
-                                <h5>Réseau International</h5>
-                                <p>Accès direct aux centrales de réservation mondiales et accréditation IATA pour l'émission de billets.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="category-a-visual">
-                    <div class="cert-card">
-                        <div class="cert-icon"><i class="fas fa-certificate"></i></div>
-                        <h4>CATÉGORIE A</h4>
-                        <p>Agence de Voyages Agréée</p>
-                        <div class="cert-seal">
-                            <i class="fas fa-check-circle"></i>
-                            <span>ONTT</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="why-item">
+          <div class="num">04</div>
+          <div><h4>Tarifs négociés</h4><p>Un réseau de partenaires hôteliers nationaux et internationaux pour le meilleur rapport qualité / prix.</p></div>
         </div>
-    </section>
+      </div>
+    </div>
+    <div class="badge-panel reveal">
+      <h3>Statut & Accréditations</h3>
+      <div class="badge-row"><span>Licence</span><span>Agence de Voyages — Catégorie A</span></div>
+      <div class="badge-row"><span>Autorité</span><span>Ministère du Tourisme / ONTT</span></div>
+      <div class="badge-row"><span>Fédération</span><span>Membre de la FTAV</span></div>
+      <div class="badge-row"><span>Accréditation</span><span>IATA</span></div>
+      <div class="badge-row"><span>Assurance</span><span>Responsabilité Civile Pro.</span></div>
+      <div class="badge-row" style="border-bottom:none;"><span>Logistique</span><span>Bus touristique privé</span></div>
+    </div>
+  </div>
+</section>
 
-    <!-- Services Section -->
-    <section id="services" class="section services">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Nos Expertises</span>
-                <h2 class="section-title">Nos Piliers de Compétences</h2>
-                <div class="section-line"></div>
-                <p class="section-desc">Grâce à notre statut de Catégorie A, nous couvrons 100% de la chaîne de valeur du voyage.</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card" data-aos="fade-up">
-                    <div class="service-card-image" style="background-image: url('https://images.unsplash.com/photo-1569154941061-e231b4725ef1?w=600&q=80')"></div>
-                    <div class="service-card-bg"></div>
-                    <div class="service-icon">
-                        <i class="fas fa-building-columns"></i>
-                    </div>
-                    <h3>Tourisme Réceptif</h3>
-                    <span class="service-subtitle">Incoming - Tunisie</span>
-                    <p>Nous faisons découvrir la Tunisie autrement. Accueil des voyageurs internationaux avec une logistique irréprochable.</p>
-                    <ul class="service-list">
-                        <li><i class="fas fa-check"></i> Séjours Balnéaires & Bien-être</li>
-                        <li><i class="fas fa-check"></i> Circuits Culturels & Historiques</li>
-                        <li><i class="fas fa-check"></i> Désert & Campements Sahariens</li>
-                        <li><i class="fas fa-check"></i> Transferts privés & Guides multilingues</li>
-                    </ul>
-                    <div class="service-destinations">
-                        <span>Hammamet</span><span>Djerba</span><span>Carthage</span><span>Tozeur</span>
-                    </div>
-                </div>
-                <div class="service-card featured" data-aos="fade-up" data-aos-delay="100">
-                    <div class="service-card-image" style="background-image: url('https://images.unsplash.com/photo-1436491865332-7a61a109db05?w=600&q=80')"></div>
-                    <div class="service-card-bg"></div>
-                    <div class="service-badge">Populaire</div>
-                    <div class="service-icon">
-                        <i class="fas fa-plane-departure"></i>
-                    </div>
-                    <h3>Tourisme Émetteur</h3>
-                    <span class="service-subtitle">Outgoing & Billetterie</span>
-                    <p>Voyages clé en main et sur mesure vers les plus belles destinations mondiales, avec billetterie aérienne complète.</p>
-                    <ul class="service-list">
-                        <li><i class="fas fa-check"></i> Voyages Sur Mesure & Packages</li>
-                        <li><i class="fas fa-check"></i> Billetterie Aérienne & Maritime</li>
-                        <li><i class="fas fa-check"></i> Pèlerinage Omra & Hadj</li>
-                        <li><i class="fas fa-check"></i> Lunes de Miel</li>
-                    </ul>
-                    <div class="service-destinations">
-                        <span>Turquie</span><span>Égypte</span><span>Europe</span><span>Asie</span><span>Omra</span>
-                    </div>
-                </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="service-card-image" style="background-image: url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600&q=80')"></div>
-                    <div class="service-card-bg"></div>
-                    <div class="service-icon">
-                        <i class="fas fa-briefcase"></i>
-                    </div>
-                    <h3>Voyages d'Affaires</h3>
-                    <span class="service-subtitle">MICE - Corporate</span>
-                    <p>Organisation complète d'événements professionnels et gestion des déplacements d'entreprise.</p>
-                    <ul class="service-list">
-                        <li><i class="fas fa-check"></i> Séminaires & Congrès</li>
-                        <li><i class="fas fa-check"></i> Team Building</li>
-                        <li><i class="fas fa-check"></i> Lancements de Produits</li>
-                        <li><i class="fas fa-check"></i> Tarifs Préférentiels Entreprises</li>
-                    </ul>
-                    <div class="service-destinations">
-                        <span>Tunisie</span><span>International</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<section id="destinations">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-tag">Nos départements</div>
+        <h2>Au-delà du pack classique.</h2>
+      </div>
+      <p class="section-note">Quatre façons de voyager avec Fairouz Travel, chacune pensée pour un projet différent.</p>
+    </div>
+    <div class="dest-scroll reveal">
+      <div class="dest">
+        <img src="https://images.unsplash.com/photo-1530295314625-30d3b777ac7a?auto=format&fit=crop&w=900&q=80" alt="Expéditions et voyages d'aventure">
+        <div class="overlay"></div>
+        <div class="content"><div class="kicker">Expéditions</div><h4>Aventure</h4></div>
+      </div>
+      <div class="dest">
+        <img src="https://images.unsplash.com/photo-1579305796538-03268c05b65c?auto=format&fit=crop&w=900&q=80" alt="Pèlerinage Omra et Hadj">
+        <div class="overlay"></div>
+        <div class="content"><div class="kicker">Pèlerinage</div><h4>Omra & Hadj</h4></div>
+      </div>
+      <div class="dest">
+        <img src="https://images.unsplash.com/photo-1607869861980-da5f9b8b4969?auto=format&fit=crop&w=900&q=80" alt="Tourisme local premium, Sidi Bou Said">
+        <div class="overlay"></div>
+        <div class="content"><div class="kicker">Local</div><h4>Tunisie Premium</h4></div>
+      </div>
+      <div class="dest">
+        <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=900&q=80" alt="Voyages d'affaires et MICE">
+        <div class="overlay"></div>
+        <div class="content"><div class="kicker">Corporate</div><h4>Affaires & MICE</h4></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Stats Section -->
-    <section id="stats" class="section stats">
-        <div class="stats-bg"></div>
-        <div class="container">
-            <div class="section-header light">
-                <span class="section-tag">Saison 2025/2026</span>
-                <h2 class="section-title">Nos Chiffres Clés</h2>
-                <div class="section-line"></div>
-            </div>
-            <div class="stats-grid">
-                <div class="stat-card" data-aos="zoom-in">
-                    <div class="stat-icon"><i class="fas fa-mosque"></i></div>
-                    <div class="stat-number" data-target="1000">0</div>
-                    <div class="stat-plus">+</div>
-                    <div class="stat-label">Pèlerins Omra Accompagnés</div>
-                </div>
-                <div class="stat-card" data-aos="zoom-in" data-aos-delay="50">
-                    <div class="stat-icon"><i class="fas fa-plane"></i></div>
-                    <div class="stat-number" data-target="1500">0</div>
-                    <div class="stat-plus">+</div>
-                    <div class="stat-label">Réservations Billets d'Avion</div>
-                </div>
-                <div class="stat-card" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="stat-icon"><i class="fas fa-hotel"></i></div>
-                    <div class="stat-number" data-target="500">0</div>
-                    <div class="stat-plus">+</div>
-                    <div class="stat-label">Réservations d'Hôtels</div>
-                </div>
-                <div class="stat-card" data-aos="zoom-in" data-aos-delay="150">
-                    <div class="stat-icon"><i class="fas fa-suitcase-rolling"></i></div>
-                    <div class="stat-number" data-target="3">0</div>
-                    <div class="stat-label">Voyages Organisés Turquie</div>
-                </div>
-                <div class="stat-card" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="stat-icon"><i class="fas fa-landmark"></i></div>
-                    <div class="stat-number" data-target="2">0</div>
-                    <div class="stat-label">Voyages Organisés Égypte</div>
-                </div>
-                <div class="stat-card" data-aos="zoom-in" data-aos-delay="250">
-                    <div class="stat-icon"><i class="fas fa-ship"></i></div>
-                    <div class="stat-number" data-target="30">0</div>
-                    <div class="stat-label">Réservations Bateau</div>
-                </div>
-            </div>
-        </div>
-    </section>
+<section class="fiche" id="fiche">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-tag">Fiche technique</div>
+        <h2>L'agence, en clair.</h2>
+      </div>
+    </div>
+    <div class="fiche-grid reveal">
+      <div>
+        <div class="fiche-row"><div class="k">Nom</div><div class="v">Fairouz Travel — فيروز للأسفار و الرحلات</div></div>
+        <div class="fiche-row"><div class="k">Statut</div><div class="v">S.A.R.L / S.A au capital de 100 000 DT</div></div>
+        <div class="fiche-row"><div class="k">Licence</div><div class="v">Agence de Voyages de Catégorie A</div></div>
+      </div>
+      <div>
+        <div class="fiche-row"><div class="k">Garanties</div><div class="v">Assurance Responsabilité Civile Professionnelle conforme à la réglementation</div></div>
+        <div class="fiche-row"><div class="k">Réseau</div><div class="v">Membre de la FTAV · Accréditation IATA</div></div>
+        <div class="fiche-row"><div class="k">Flotte</div><div class="v">Bus de transport touristique privé</div></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Why Us Section -->
-    <section id="why" class="section why-us">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Nos Avantages</span>
-                <h2 class="section-title">Pourquoi Choisir FAIROUZ TRAVEL ?</h2>
-                <div class="section-line"></div>
-            </div>
-            <div class="why-grid">
-                <div class="why-card" data-aos="fade-right">
-                    <div class="why-number">01</div>
-                    <div class="why-content">
-                        <h3>Expertise Certifiée</h3>
-                        <p>Le statut Catégorie A vous garantit une <strong>sécurité juridique et financière totale</strong> pour vos réservations. Cautionnement bancaire et assurances obligatoires protègent vos fonds.</p>
-                    </div>
-                    <div class="why-icon"><i class="fas fa-certificate"></i></div>
-                </div>
-                <div class="why-card" data-aos="fade-left">
-                    <div class="why-number">02</div>
-                    <div class="why-content">
-                        <h3>Disponibilité 24/7</h3>
-                        <p>Une <strong>assistance permanente</strong> pour nos clients, qu'ils soient en voyage à l'autre bout du monde ou en circuit dans le désert tunisien. Conciergerie WhatsApp réactive.</p>
-                    </div>
-                    <div class="why-icon"><i class="fas fa-clock"></i></div>
-                </div>
-                <div class="why-card" data-aos="fade-right">
-                    <div class="why-number">03</div>
-                    <div class="why-content">
-                        <h3>Tarifs Négociés</h3>
-                        <p>Un large réseau de <strong>partenaires hôteliers nationaux et internationaux</strong> permettant d'offrir le meilleur rapport qualité/prix du marché.</p>
-                    </div>
-                    <div class="why-icon"><i class="fas fa-tags"></i></div>
-                </div>
-                <div class="why-card" data-aos="fade-left">
-                    <div class="why-number">04</div>
-                    <div class="why-content">
-                        <h3>Bus Privé de Transport</h3>
-                        <p>Notre agence dispose de son <strong>propre bus de transport touristique privé</strong> pour assurer le confort et la sécurité de nos voyageurs.</p>
-                    </div>
-                    <div class="why-icon"><i class="fas fa-bus"></i></div>
-                </div>
-            </div>
-        </div>
-    </section>
+<section class="cta" id="contact">
+  <div class="cta-bg"></div>
+  <div class="wrap cta-inner">
+    <div class="reveal">
+      <div class="eyebrow">Parlons de votre voyage</div>
+      <h2>Un projet de voyage ? Un dossier commence par un appel.</h2>
+      <p class="cta-sub">Que ce soit pour une Omra, un séjour à l'étranger ou un déplacement professionnel, notre équipe à Kasserine vous répond directement.</p>
+      <div style="margin-top:36px;display:flex;gap:16px;flex-wrap:wrap;">
+        <a class="btn-primary" href="https://wa.me/21651007555" target="_blank" rel="noopener">Écrire sur WhatsApp →</a>
+        <a class="btn-ghost" href="mailto:contact@myfairouz.com">Envoyer un e-mail</a>
+      </div>
+    </div>
+    <div class="contact-list reveal">
+      <div class="contact-row"><span class="k">Adresse</span><span class="v">Kasserine, Tunisie</span></div>
+      <div class="contact-row"><span class="k">Téléphone</span><span class="v"><a href="tel:+21657022366">+216 57 022 366</a><br><a href="tel:+21651007555">+216 51 007 555</a></span></div>
+      <div class="contact-row"><span class="k">E-mail</span><span class="v"><a href="mailto:contact@myfairouz.com">contact@myfairouz.com</a></span></div>
+      <div class="contact-row"><span class="k">Web</span><span class="v"><a href="https://www.myfairouz.com" target="_blank" rel="noopener">www.myfairouz.com</a></span></div>
+      <div class="contact-row" style="border-bottom:none;"><span class="k">Réseaux</span><span class="v">@fayrouztravelKASSERINE</span></div>
+    </div>
+  </div>
+</section>
 
-    <!-- Tech Sheet Section -->
-    <section class="section tech-sheet">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Fiche Technique</span>
-                <h2 class="section-title">Nos Fiches Techniques</h2>
-                <div class="section-line"></div>
-            </div>
-            <div class="tech-grid">
-                <div class="tech-card" data-aos="fade-up">
-                    <div class="tech-icon"><i class="fas fa-building"></i></div>
-                    <h4>Statut Légal</h4>
-                    <p>S.A.R.L / S.A au capital de 100 000 DT</p>
-                </div>
-                <div class="tech-card" data-aos="fade-up" data-aos-delay="50">
-                    <div class="tech-icon"><i class="fas fa-stamp"></i></div>
-                    <h4>Licence</h4>
-                    <p>Agence de Voyages Catégorie A</p>
-                </div>
-                <div class="tech-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="tech-icon"><i class="fas fa-shield-halved"></i></div>
-                    <h4>Garanties</h4>
-                    <p>Assurance Responsabilité Civile Professionnelle</p>
-                </div>
-                <div class="tech-card" data-aos="fade-up" data-aos-delay="150">
-                    <div class="tech-icon"><i class="fas fa-network-wired"></i></div>
-                    <h4>Réseau & Partenariats</h4>
-                    <p>Membre FTAV • Accréditation IATA</p>
-                </div>
-                <div class="tech-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="tech-icon"><i class="fas fa-bus"></i></div>
-                    <h4>Flotte & Logistique</h4>
-                    <p>Propre bus de transport touristique privé</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<footer>
+  <div class="wrap footer-inner">
+    <div>© 2026 FAIROUZ TRAVEL — Agence de Voyages Catégorie A, Kasserine, Tunisie</div>
+    <div><a href="#services">Services</a> &nbsp;·&nbsp; <a href="#fiche">Licence</a> &nbsp;·&nbsp; <a href="#contact">Contact</a></div>
+  </div>
+</footer>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section contact">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Restons en Contact</span>
-                <h2 class="section-title">Contactez-Nous</h2>
-                <div class="section-line"></div>
-                <p class="section-desc">Nous sommes à votre disposition pour concrétiser tous vos projets de voyage.</p>
-            </div>
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-icon"><i class="fas fa-location-dot"></i></div>
-                        <div>
-                            <h4>Adresse</h4>
-                            <p>Kasserine, Tunisie</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon"><i class="fas fa-phone"></i></div>
-                        <div>
-                            <h4>Téléphone</h4>
-                            <p>+216 57 022 366<br>+216 51 007 555</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-                        <div>
-                            <h4>Email</h4>
-                            <p>contact@myfairouz.com</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon"><i class="fas fa-globe"></i></div>
-                        <div>
-                            <h4>Site Web</h4>
-                            <p>www.myfairouz.com</p>
-                        </div>
-                    </div>
-                    <div class="contact-social">
-                        <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-                        <a href="#" class="social-link" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                    </div>
-                </div>
-                <div class="contact-form-wrapper">
-                    <form class="contact-form" id="contactForm">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <input type="text" placeholder="Votre Nom" required>
-                            </div>
-                            <div class="form-group">
-                                <input type="email" placeholder="Votre Email" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <input type="tel" placeholder="Votre Téléphone">
-                        </div>
-                        <div class="form-group">
-                            <select required>
-                                <option value="" disabled selected>Type de Voyage</option>
-                                <option>Tourisme Réceptif (Tunisie)</option>
-                                <option>Tourisme Émetteur (International)</option>
-                                <option>Pèlerinage Omra & Hadj</option>
-                                <option>Voyages d'Affaires (MICE)</option>
-                                <option>Billetterie Aérienne</option>
-                                <option>Autre</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <textarea rows="4" placeholder="Décrivez votre projet de voyage..."></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-full">
-                            <i class="fas fa-paper-plane"></i>
-                            Envoyer le Message
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
+<a class="wa-float" href="https://wa.me/21651007555" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="#0F2340"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5C10 9 9.5 7.8 9.3 7.3c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s1 2.5 1.1 2.7c.1.2 2 3 4.8 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3z"/><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.2-.4-4.5-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
+</a>
 
-    <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/21657022366" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+<script>
+  const nav = document.querySelector('.nav');
+  window.addEventListener('scroll', () => {
+    nav.style.boxShadow = window.scrollY > 20 ? '0 2px 20px rgba(15,35,64,0.08)' : 'none';
+  });
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <div class="footer-logo">
-                        <img src="Logo.png" alt="Fayrouz Travel" class="footer-logo-img">
-                        <span class="logo-text">FAIROUZ</span>
-                        <span class="logo-sub">TRAVEL</span>
-                    </div>
-                    <p>Agence de Voyage & de Tourisme de Catégorie A. Producteur & Distributeur. Membre de la FTAV.</p>
-                </div>
-                <div class="footer-links">
-                    <h4>Navigation</h4>
-                    <ul>
-                        <li><a href="#home">Accueil</a></li>
-                        <li><a href="#about">À Propos</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#stats">Chiffres</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h4>Services</h4>
-                    <ul>
-                        <li><a href="#services">Tourisme Réceptif</a></li>
-                        <li><a href="#services">Tourisme Émetteur</a></li>
-                        <li><a href="#services">Billetterie Aérienne</a></li>
-                        <li><a href="#services">Pèlerinage Omra</a></li>
-                        <li><a href="#services">Voyages d'Affaires</a></li>
-                    </ul>
-                </div>
-                <div class="footer-contact">
-                    <h4>Contact</h4>
-                    <p><i class="fas fa-location-dot"></i> Kasserine, Tunisie</p>
-                    <p><i class="fas fa-phone"></i> +216 57 022 366<br>+216 51 007 555</p>
-                    <p><i class="fas fa-envelope"></i> contact@myfairouz.com</p>
-                    <div class="footer-social">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Fayrouz Travel. Tous droits réservés.</p>
-                <p>Agence de Voyages Catégorie A - Kasserine, Tunisie</p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.12});
+  reveals.forEach(el => io.observe(el));
+</script>
 </body>
 </html>
